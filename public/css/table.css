@@ -1,0 +1,72 @@
+.product-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 1em;
+  text-align: left;
+}
+
+.product-table thead tr {
+  background-color: #f2f2f2;
+  text-align: left;
+}
+
+.product-table th,
+.product-table td {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+}
+
+.product-table tbody tr {
+  border-bottom: 1px solid #ddd;
+}
+
+.product-table tbody tr:nth-of-type(even) {
+  background-color: #f9f9f9;
+}
+
+.product-table tbody tr:last-of-type {
+  border-bottom: 2px solid #009879;
+}
+
+.product-table img {
+  max-width: 130px;
+  height: auto;
+}
+
+.search-form {
+  margin: 20px 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.search-form input[type="text"] {
+  padding: 5px;
+  font-size: 1em;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.search-form button {
+  padding: 5px 10px;
+  font-size: 1em;
+  border: none;
+  background-color: #009879;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.inline-form {
+  display: inline;
+}
+
+.status-btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 1.5em;
+  padding: 0;
+  margin: 0;
+}

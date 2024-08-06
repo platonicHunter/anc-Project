@@ -1,0 +1,90 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/product.css">
+<link rel="stylesheet" href="/css/table.css">
+</head>
+
+<body>
+    <%- include('../includes/navigation.ejs') %>
+
+    <main>
+        <h1>Product Lists</h1>
+        <% if (errorMessage) { %>
+            <div class="user-message user-message--error"><%= errorMessage %></div>
+        <% } %>
+        <% if (successMessage) { %>
+            <div class="user-message user-message--success"><%= successMessage %></div>
+        <% } %>
+        <form action="/admin/products" method="GET" class="search-form">
+            <input type="text" name="search" placeholder="Search by title" value="<%= searchQuery %>">
+            <button type="submit">Search</button>
+        </form>
+        
+        <% if (prods.length > 0) { %>
+            <table class="product-table">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Title</th>
+                        <th>Image</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% prods.forEach((product, index) => { %>
+                        <tr>
+                            <td><%= index + 1 %></td>
+                            <td><%= product.title %></td>
+                            <td><img src="/<%= product.imageUrl %>" alt="<%= product.title %>" class="responsive-img"></td>
+                            <td><%= product.quantity %></td>
+                            <td>$<%= product.price %></td>
+                            <td><%= product.description %></td>
+                            <td>
+                                <form action="/admin/products/<%= product._id %>?_method=POST" method="POST">
+                                    <input type="hidden" name="_method" value="PUT">
+                                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                    <input type="hidden" name="status" value="<%= product.status === 1 ? 0 : 1 %>">
+                                    <label class="switch">
+                                        <input type="checkbox" <%= product.status === 1 ? 'checked' : '' %> onchange="toggleStatus(this)">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </form>
+                            </td> 
+                            <td>
+                                <a href="/admin/edit-product/<%= product._id %>?edit=true" class="btn">Edit</a>
+                                <form action="/admin/delete-product" method="POST" class="inline-form">
+                                    <input type="hidden" value="<%= product._id %>" name="productId">
+                                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                    <button class="btn" type="submit">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        <% } else { %>
+            <h1>No Products Found!</h1>
+        <% } %>
+    </main>
+
+    <%- include('../includes/end.ejs') %>
+
+  
+    <script>
+     
+        function toggleStatus(checkbox) {
+            const form = checkbox.closest('form');
+            const hiddenInput = form.querySelector('input[name="status"]');
+
+            hiddenInput.value = checkbox.checked ? 0 : 1;
+
+            form.submit();
+        }
+
+        
+    </script>
+</body>
+</html>

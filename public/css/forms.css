@@ -1,0 +1,54 @@
+.form-control {
+  margin: 1rem 0;
+  position: relative;
+}
+
+.form-control label,
+.form-control input,
+.form-control textarea {
+  display: block;
+  width: 100%;
+  margin-bottom: 0.25rem;
+}
+
+.form-control input,
+.form-control textarea {
+  border: 1px solid #a1a1a1;
+  font: inherit;
+  border-radius: 2px;
+}
+
+.form-control input:focus,
+.form-control textarea:focus {
+  outline-color: #00695c;
+}
+
+.form-control input.invalid,
+.form-control textarea.invalid {
+  border-color: red;
+  color: red;
+}
+
+.password-container {
+  position: relative;
+}
+
+.password-container input {
+  padding-right: 30px; /* Adjust based on the size of the toggle icon */
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px; /* Adjust based on your design */
+  top: 70%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.new-password {
+  position: absolute;
+  right: 10px; /* Adjust based on your design */
+  top: 70%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
